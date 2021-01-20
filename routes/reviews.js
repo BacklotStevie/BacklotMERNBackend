@@ -30,4 +30,36 @@ router.route('/writeReview').post((req, res) => {
         })
 });
 
+router.route("/:id").get((req, res) => {
+    Review.findById(req.params.id)
+        .then((review) => {
+            res.json(review);
+        })
+        .catch((err) => {
+            res.status(500).json({ message: "Oops" });
+        });
+});
+
+router.route("/update/:id").put((req, res) => {
+    console.log(req.body)
+    Review.findByIdAndUpdate(req.params.id, req.body)
+        .then((oldReview) => {
+            res.send("okay")
+        })
+        .catch((err) => {
+            res.status(500).send("Oops");
+        });
+});
+
+router.route("/:id").delete((req, res) => {
+    Review.findByIdAndDelete(req.params.id, req.body)
+        .then((deleteReview) => {
+            res.send("Deleted")
+        })
+        .catch((err) => {
+            res.status(500).send("Oops");
+        });
+});
+
+
 module.exports = router;

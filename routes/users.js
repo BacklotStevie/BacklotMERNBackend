@@ -48,4 +48,29 @@ router.route('/signup').post((req, res) => {
         })
 })
 
+//login CRUD function
+router.route("/login").post((req, res) => {
+    User.findOne({ email: req.body.email })
+        .then((user) => {
+            if (!user) {
+                alert("Invalid credentials!");
+                res.status(403).send("Invalid credentials");
+            }
+            else if (user.password === req.body.password) {
+                var token = jwt.sign({ id: user._id }, 'shhh')
+                res.status(200).json({
+                    token,
+                    user: {
+                        email: user.email,
+                        userType: user.userType
+                    }
+                })
+                console.log(token)
+            }
+            else {
+                res.status(403).send("Invalid credentials")
+            }
+        })
+})
+
 module.exports = router;
