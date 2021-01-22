@@ -9,6 +9,11 @@ const reviewsSchema = new Schema({
         type: String,
         required: true,
     },
+    tags: [String],
+    likeCount: {
+        type: Number,
+        default: 0,
+    },
     reviews: Array,
     img: String,
 }, {
