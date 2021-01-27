@@ -66,7 +66,14 @@ router.route("/login").post((req, res) => {
                     if (err) res.status(500).send("Whoops!")
                     if (match) {
                         var token = jwt.sign({ id: user._id }, 'shhh')
-                        res.json({ token: token })
+                        res.status(200).json({
+                            token,
+                            user: {
+                                email: user.email,
+                                id: user._id,
+                                userType: user.userType
+                            }
+                        })
                     } else res.status(403).send("Invalid credentials 3")
                 })
             } else {
