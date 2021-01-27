@@ -15,13 +15,12 @@ router.route('/').get((req, res) => {
 
 //add a review function
 router.route('/writeReview').post((req, res) => {
-
     //the following code only lets people with a specific token write a review. req.headers.auth checks bearer token assigned to specific user. .split converts spaces into comas, and gets the word "bearer" out of the token. the [1] takes us to the token in the array, since that is the position after "bearer"
     // let token = req.headers.authorization.split(" ")[1];
     // let decoded = jwt.verify(token, 'shhhh');
 
     //.combined lets us add additional headers and body text that are nested in our schema. .then(insertedReview) then pushed the new review into the API
-    Review.create(req.body)
+    Review.create(req.body.combined)
         .then((insertedReview) => {
             res.send('Review inserted')
         })

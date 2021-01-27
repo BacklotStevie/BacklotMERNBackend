@@ -5,10 +5,7 @@ const Schema = mongoose.Schema;
 const reviewsSchema = new Schema({
     title: String,
     writer: String,
-    genre: {
-        type: String,
-        required: true,
-    },
+    genre: String,
     tags: [String],
     likeCount: {
         type: Number,
