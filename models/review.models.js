@@ -11,7 +11,12 @@ const reviewsSchema = new Schema({
         type: Number,
         default: 0,
     },
-    reviews: Array,
+    reviews: [
+        {
+            heading: String,
+            info: String,
+        }
+    ],
     img: String,
 }, {
     //when someone creates a review, a timestamp is added to the schema to see when the review was created

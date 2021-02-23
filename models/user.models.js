@@ -20,7 +20,7 @@ const usersSchema = new Schema({
         type: String,
         //two different types of users
         enum: ["normal", "admin"],
-        default: null
+        default: "normal",
     },
 }, {
     //when someone creates a user, a timestamp is added to the schema to see when the user was created
