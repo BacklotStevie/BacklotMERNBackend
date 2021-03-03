@@ -7,6 +7,7 @@ require('dotenv').config();
 
 //now we create our first route
 router.route('/').get((req, res) => {
+    console.log("hello")
     //get a list from all reviews in database. find method returns a promise in json format. then format returns reviews retrieved from database
     Review.find().sort({createdAt: -1})
         .then(review => res.json(review))
